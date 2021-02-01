@@ -19,7 +19,7 @@ function App() {
                 <Content className="layout-content">
                     <DrawContent />
                 </Content>
-                <Sider width="600" theme="light"><MsgBoard /></Sider>
+                <Sider width="400" theme="light"><MsgBoard /></Sider>
             </Layout>
             {/*<Footer>Footer</Footer>*/}
         </Layout>
