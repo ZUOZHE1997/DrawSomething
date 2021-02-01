@@ -1,0 +1,14 @@
+.People-list{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /*color: #ffffff;*/
+    padding: 4px;
+}
+.People-list-line{
+    padding: 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
