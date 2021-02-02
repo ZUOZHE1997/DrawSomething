@@ -75,7 +75,7 @@ export class DrawContent extends React.Component {
             >
               重绘
             </Button>
-            <div style={silderStyle}>
+            <div style={silderStyle}> 
               <Slider
                 vertical
                 disabled={this.state.disabled}

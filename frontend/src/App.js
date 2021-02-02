@@ -1,39 +1,42 @@
 import './App.css'
-import { Layout } from 'antd'
-import { BoxHeader } from './views/Header'
-import { PeopleList } from './views/Room'
-import { MsgBoard } from './views/MsgBoard'
-import { DrawContent } from './views/Content'
-import { io,socket } from './api'
-const { Header, Sider, Content } = Layout
-console.log(socket)
-socket.on('connect', () => {
-  socket.on('send', (data) => {
-    console.log(data)
-  })
-  console.log(socket.id) // 'G5p5...'
-})
+import React from "react";
+import {LayoutContent} from "./views/Home"
+import {Login} from "./views/login"
+import {HashRouter, Switch, Route } from "react-router-dom";
 
-function App() {
-  return (
-    <Layout>
-      <Header>
-        <BoxHeader />
-      </Header>
-      <Layout>
-        <Sider width="200" theme="light">
-          <PeopleList />
-        </Sider>
-        <Content className="layout-content">
-          <DrawContent />
-        </Content>
-        <Sider width="400" theme="light">
-          <MsgBoard />
-        </Sider>
-      </Layout>
-      {/*<Footer>Footer</Footer>*/}
-    </Layout>
-  )
+// import {io, socket} from './api'
+
+// console.log(socket)
+// socket.on('connect', () => {
+//     socket.on('send', (data) => {
+//         console.log(data)
+//     })
+//     console.log(socket.id) // 'G5p5...'
+// })
+
+class App extends React.Component {
+    constructor() {
+        super();
+        this.state = {
+            isLogin: true// 初始值应该是false
+        }
+    }
+
+    render() {
+        return (
+            <HashRouter >
+                <Switch>
+                    <Route path="/" component={Login}/>
+                    <Route path="/home" component={LayoutContent}/>
+                </Switch>
+            </HashRouter>
+            // <div>
+            //     {this.state.isLogin ? <LayoutContent/> : <Login confirmLogin={() => {
+            //         this.setState({isLogin: true})
+            //     }}/>}
+            // </div>
+        )
+    }
 }
 
 export default App
