@@ -21,19 +21,12 @@ server.listen(port, () => {
   console.log('Service started successfully 🍻')
 })
 
-//监听客户端连接 每个client对应一个开着的浏览器窗口
-
-let msg = []
-
-io.of('/chat').on('connection', (socket) => {
+io.of('/play').on('connection', (socket) => {
   console.log('a user connected')
 
-  socket.on('message', async function (message) {
-    if (msg.length > 100) msg.length = 0
-    msg.push(message)
-    socket.broadcast.emit('send', msg)
-    socket.emit('send', msg)
-  })
+  socket.join('room1') // 加入房间
+  io.emit("send","new user join")
+  // socket.leave('room2') // 离开房间
   //监听客户端断开连接
   socket.on('disconnect', async function () {})
 })
