@@ -1,6 +1,6 @@
 import React from 'react'
 import './index.css'
-import { Card, Button, Slider, Tooltip } from 'antd'
+import { Button, Slider, Tooltip } from 'antd'
 import { Draw } from './draw'
 
 export class DrawContent extends React.Component {
@@ -26,70 +26,67 @@ export class DrawContent extends React.Component {
   render() {
     const silderStyle = {
       display: 'inline-block',
-      height: 100,
-      marginLeft: 10,
-      marginTop: 20,
+      width: 100,
     }
     return (
-      <Card>
-        <div className="draw-content">
-          <canvas width="600" height="500" id="draw" />
-          <div className="operating-btn-list">
-            {}
+      <div className="draw-content">
+        <canvas id="draw" />
+        <div className="operating-btn-list">
+          <Button type="primary" onClick={this.props.showDrawer}>
+            打开会话框
+          </Button>
+          <Button
+            type="link"
+            size="small"
+            onClick={() => {
+              this.draw.checkPen()
+            }}
+          >
+            画笔
+          </Button>
+          <Tooltip title="有BUG,暂时不要用" color="red">
             <Button
               type="link"
               size="small"
               onClick={() => {
-                this.draw.checkPen()
+                this.draw.cleaning()
               }}
             >
-              画笔
+              橡皮擦
             </Button>
-            <Tooltip title="有BUG,暂时不要用" color="red">
-              <Button
-                type="link"
-                size="small"
-                onClick={() => {
-                  this.draw.cleaning()
-                }}
-              >
-                橡皮擦
-              </Button>
-            </Tooltip>
+          </Tooltip>
 
-            <Button
-              type="link"
-              size="small"
-              onClick={() => {
-                this.draw.undo()
+          <Button
+            type="link"
+            size="small"
+            onClick={() => {
+              this.draw.undo()
+            }}
+          >
+            撤销
+          </Button>
+          <Button
+            type="link"
+            size="small"
+            onClick={() => {
+              this.draw.reset()
+            }}
+          >
+            重绘
+          </Button>
+          <div style={silderStyle}>
+            <Slider
+              disabled={this.state.disabled}
+              defaultValue={3}
+              onAfterChange={(value) => {
+                this.changeLineWidth(value)
               }}
-            >
-              撤销
-            </Button>
-            <Button
-              type="link"
-              size="small"
-              onClick={() => {
-                this.draw.reset()
-              }}
-            >
-              重绘
-            </Button>
-            <div style={silderStyle}> 
-              <Slider
-                vertical
-                disabled={this.state.disabled}
-                defaultValue={3}
-                onAfterChange={(value) => {
-                  this.changeLineWidth(value)
-                }}
-                max={12}
-                min={2}
-              />
-            </div>
+              max={12}
+              min={2}
+            />
           </div>
         </div>
-      </Card>
+      </div>
     )
   }
 }

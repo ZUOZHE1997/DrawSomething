@@ -1,11 +1,3 @@
-.message-board{
-    padding: 20px;
-}
-/*.ant-input-textarea-show-count::after{*/
-/*    position: absolute;*/
-/*    bottom: 6px;*/
-/*    right: 100px;*/
-/*}*/
 .message-board-show{
     height: 60vh;
     overflow-y: scroll;

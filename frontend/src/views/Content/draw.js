@@ -13,6 +13,8 @@ export class Draw {
   }
   // 初始化
   init() {
+    this.canvas.width = document.body.clientWidth - 10
+    this.canvas.height= document.body.clientHeight - 10
     this.canvas.onmousedown = (e) => {
       this.readyDraw(e)
     }
@@ -65,10 +67,10 @@ export class Draw {
     this.ctx.arc(x, y, radius, 0, Math.PI * 2)
     this.ctx.fill()
     if (this.clear) {
-      this.ctx.clip();
-      this.ctx.clearRect(0,0,this.canvas.width,this.canvas.height);
-      this.ctx.restore();
-  }
+      this.ctx.clip()
+      this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
+      this.ctx.restore()
+    }
   }
   // 鼠标平移划线
   drawLine(x1, y1, x2, y2) {
@@ -116,7 +118,7 @@ export class Draw {
     // console.log(value)
     this.lineWidth = value
   }
-  checkPen(){
+  checkPen() {
     // console.log()
     this.clear = false
   }

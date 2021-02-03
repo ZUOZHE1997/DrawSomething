@@ -1,7 +1,7 @@
 import React from 'react'
 import './index.css'
 import { Button, Input } from 'antd'
-import {CommentGuide} from '../../components/comment/index'
+import { CommentGuide } from '../../components/comment/index'
 const { TextArea } = Input
 
 export class MsgBoard extends React.Component {
@@ -9,14 +9,12 @@ export class MsgBoard extends React.Component {
     const list = [
       {
         name: 'aloha',
-        avatar:
-          'https://avatars.githubusercontent.com/u/36844445?s=400&u=5d764d41119d96e18e0468bb5f22495db2d9882c&v=4',
+        avatar: 'https://files.catbox.moe/i023bf.png',
         content: 'helloworld',
       },
       {
         name: 'tom',
-        avatar:
-          'https://avatars.githubusercontent.com/u/36844445?s=400&u=5d764d41119d96e18e0468bb5f22495db2d9882c&v=4',
+        avatar: 'https://files.catbox.moe/i023bf.png',
         content: 'helloworld',
       },
     ]
