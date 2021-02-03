@@ -1,6 +1,6 @@
 export class Draw {
   constructor(options) {
-    console.log(options)
+    // console.log(options)
     // 获取canvas实例
     this.canvas = document.getElementById(options.element)
     this.ctx = this.canvas.getContext('2d')
@@ -75,7 +75,7 @@ export class Draw {
     this.ctx.lineWidth = this.lineWidth // 笔刷大小
     this.ctx.lineCap = 'round'
     this.ctx.lineJoin = 'round'
-    console.log(this.clear)
+    // console.log(this.clear)
     if (this.clear) {
       this.ctx.save()
       this.ctx.globalCompositeOperation = 'destination-out'
@@ -98,12 +98,12 @@ export class Draw {
   // 清空
   reset() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
-    console.log(this.canvas.width, this.canvas.height)
+    // console.log(this.canvas.width, this.canvas.height)
     // this.canvas.width = this.canvas.width
     // this.canvas.height = this.canvas.height
   }
   undo() {
-    console.log(this.history)
+    // console.log(this.history)
     if (this.history.length < 1) return false
     this.ctx.putImageData(this.history[this.history.length - 1], 0, 0)
     this.history.pop()
@@ -113,11 +113,11 @@ export class Draw {
     this.history.push(data)
   }
   changeLine(value) {
-    console.log(value)
+    // console.log(value)
     this.lineWidth = value
   }
   checkPen(){
-    console.log()
+    // console.log()
     this.clear = false
   }
 }
