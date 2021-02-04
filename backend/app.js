@@ -12,7 +12,7 @@ const app = new Koa()
 
 app.use(routers.routes())
 app.use(router.allowedMethods())
-// app.use(handleCors)
+
 app.use(cors(handleCors))
 
 const server = http.createServer(app.callback())
@@ -22,19 +22,19 @@ server.listen(port, () => {
 })
 
 let peoples = []
-let user = ""
+let user = ''
 io.on('connection', (socket) => {
   console.log('a user connected')
   socket.on('join', async (username) => {
     console.log('username is ', username)
     user = username
-    if (!peoples[username]) {
+    if (!peoples.includes(username)) {
       socket.join('room1') // 加入房间
       peoples.push(user)
       console.log(peoples)
-      io.sockets.in('room1').emit('sayHello', peoples)
+      io.sockets.in('room1').emit('sayHello', username, peoples.length)
     } else {
-      socket.emit('repeatName', false)
+      socket.emit('repeatName', true)
     }
   })
   socket.on('disconnect', async () => {
@@ -44,7 +44,6 @@ io.on('connection', (socket) => {
     if (index !== -1) {
       peoples.splice(index, 1)
     }
+    io.sockets.in('room1').emit('sayHello', peoples.length)
   })
-
-  socket.on('disconnect', async function () {})
 })

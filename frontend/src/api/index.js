@@ -1,5 +1,5 @@
 import io from 'socket.io-client'
-
+import { store } from '../store'
 const socket = io('http://localhost:3001', {
   transports: ['websocket'],
 })
@@ -11,11 +11,14 @@ const connect = (callback) => {
       console.log(data)
     })
     socket.on('repeatName', (data) => {
-      console.log(data)
-      if (!data) callback(false)
+      // callback(data)
+      alert("昵称重复!!")
     })
-    socket.on('sayHello', (data) => {
-      console.log(data, 'success')
+    socket.on('sayHello', (name, num) => {
+      store.dispatch({ type: 'setUserName', name: name })
+      store.dispatch({ type: 'GetUserNum', userNum: num })
+
+      console.log('房间有', num, '人')
     })
     socket.on('disconnect', name)
     console.log(socket.id)

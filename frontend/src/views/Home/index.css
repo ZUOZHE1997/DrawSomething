@@ -1,0 +1,16 @@
+.comment-card {
+  height: 500px;
+  position: absolute;
+  width: 600px;
+  right: 0;
+  bottom: 0;
+}
+.ant-card-body {
+  padding: 8px;
+  height: 100%;
+}
+.people {
+  position: absolute;
+  top: 0;
+  right: 10px;
+}

@@ -2,7 +2,6 @@ import React from 'react'
 import './index.css'
 import { Button, Input } from 'antd'
 import { CommentGuide } from '../../components/comment/index'
-const { TextArea } = Input
 
 export class MsgBoard extends React.Component {
   render() {
@@ -15,7 +14,7 @@ export class MsgBoard extends React.Component {
       {
         name: 'tom',
         avatar: 'https://files.catbox.moe/i023bf.png',
-        content: 'helloworld',
+        content: 'helloworldhelloworldhelloworldhelloworldhelloworldhelloworld',
       },
     ]
     return (
@@ -25,10 +24,12 @@ export class MsgBoard extends React.Component {
             return <CommentGuide item={p} key={p.name}></CommentGuide>
           })}
         </div>
-        <TextArea showCount={true} maxLength={40} autoSize={{ minRows: 4 }} />
-        <Button type="primary" block>
-          提交
-        </Button>
+        <div>
+          <Input placeholder="Basic usage" maxLength={20} />
+          <Button type="primary" block style={{ marginTop: '10px' }}>
+            提交
+          </Button>
+        </div>
       </div>
     )
   }

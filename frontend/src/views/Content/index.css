@@ -10,13 +10,14 @@
   position: absolute;
   left: 0;
   right: 0;
-  bottom: 30px;
+    top: 0;
+  /*bottom: 30px;*/
   margin: auto;
   width: 600px;
   height: auto;
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
+  align-items: center;
   font-size: 18px;
 }
 .draw-content {

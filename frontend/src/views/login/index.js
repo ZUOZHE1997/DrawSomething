@@ -1,7 +1,8 @@
 import './index.css'
 import React from 'react'
-import { Input,message } from 'antd'
+import { Input, message } from 'antd'
 import { connect, send } from '../../api/index'
+import { store } from '../../store'
 export class Login extends React.Component {
   constructor() {
     super()
@@ -9,19 +10,23 @@ export class Login extends React.Component {
       canLogin: false,
     }
   }
-  componentDidMount() {
-    connect((result) => {
-      if(!result) message.err("昵称重复")
-      // else     // this.props.history.push('home')
 
-    })
+  componentDidMount() {
+    connect()
   }
   link(e) {
-    // console.log(e.target.value)
     send(e.target.value)
-    // this.props.history.push('home')
   }
   render() {
+    // const data = store.getState()
+
+    store.subscribe(() => {
+      if (store.getState().name !== '') {
+        this.props.history.push('home')
+      }
+      console.log(store.getState().name)
+      // console.log(data)
+    })
     return (
       <div className="login-content">
         <div className="login-input-content">
