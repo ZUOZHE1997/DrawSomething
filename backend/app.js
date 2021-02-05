@@ -9,6 +9,7 @@ const cors = require('@koa/cors')
 const handleCors = require('./lib/cors')
 
 const app = new Koa()
+const Drawing = require('./controller/index')
 
 app.use(routers.routes())
 app.use(router.allowedMethods())
@@ -21,30 +22,7 @@ server.listen(port, () => {
   console.log('Service started successfully 🍻')
 })
 
-let peoples = []
-let user = ''
 io.on('connection', (socket) => {
   console.log('a user connected')
-  socket.on('join', async (username) => {
-    console.log('username is ', username)
-    user = username
-    if (!peoples.includes(username)) {
-      socket.join('room1') // 加入房间
-      peoples.push(user)
-      console.log(peoples)
-      io.sockets.in('room1').emit('sayHello', username, peoples.length)
-    } else {
-      socket.emit('repeatName', true)
-    }
-  })
-  socket.on('disconnect', async (asd) => {
-    // console.log
-    console.log('out ',asd)
-    // console.log
-    const index = peoples.indexOf(user)
-    if (index !== -1) {
-      peoples.splice(index, 1)
-    }
-    io.sockets.in('room1').emit('sayHello', peoples.length)
-  })
+  Drawing(socket, io)
 })
