@@ -37,8 +37,9 @@ io.on('connection', (socket) => {
       socket.emit('repeatName', true)
     }
   })
-  socket.on('disconnect', async () => {
-    console.log('out ')
+  socket.on('disconnect', async (asd) => {
+    // console.log
+    console.log('out ',asd)
     // console.log
     const index = peoples.indexOf(user)
     if (index !== -1) {
