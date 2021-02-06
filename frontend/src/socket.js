@@ -2,8 +2,9 @@ import io from "socket.io-client";
 import store from "./store";
 import router from "./router";
 
-console.log(store, router);
-const socket = io("http://localhost:3001", {
+const url = "http://localhost:3001";
+// console.log(store, router);
+const socket = io(url, {
   transports: ["websocket"]
 });
 let name = "";
@@ -20,17 +21,30 @@ const connect = () => {
     console.log(data);
     alert("昵称重复!!");
   });
-  socket.on("sayHello", async (name, num) => {
+  socket.on("setName", async name => {
     await store.dispatch("setName", name);
-    await store.dispatch("setUserNumber", num);
     await router.push("/homePage");
-    console.log("房间有", num, "人");
   });
-  socket.on("disconnect", name);
+  socket.on("setUserNum", num => {
+    console.log(num);
+    store.dispatch("setUserNumber", num);
+  });
+  socket.on("sendComment", data => {
+    store.dispatch("setComment", data);
+    console.log("接受的评论消息", data);
+  });
+
+  socket.on("disconnect", () => {
+    socket.emit("quit", name);
+  });
 };
 
 const send = username => {
   name = username;
   socket.emit("join", username);
 };
-export { send, connect };
+const sendComment = msg => {
+  console.log(msg);
+  socket.emit("comment", msg);
+};
+export { send, connect, sendComment };

@@ -7,7 +7,7 @@
         autofocus="autofocus"
         class="login-input"
         type="text"
-        placeholder="your name"
+        placeholder="your nickname"
         @keydown.enter="inputName()"
         maxlength="10"
       />
@@ -58,6 +58,7 @@ export default {
 }
 
 .login-input {
+  margin-top: 10px;
   width: 100%;
   font-size: 30px;
   text-align: center;

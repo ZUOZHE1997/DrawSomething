@@ -20,14 +20,16 @@
       </div>
     </div>
     <Comment></Comment>
+    <div class="people">当前在线{{ people }}人</div>
   </div>
 </template>
 
 <script>
 import { Draw } from "@/utils/draw";
-import { onMounted, ref } from "vue";
+import { onMounted, ref, computed } from "vue";
 import Slider from "@/components/Slider";
 import Comment from "./Comment";
+import { useStore } from "vuex";
 
 export default {
   name: "DrawingBoard",
@@ -36,6 +38,9 @@ export default {
     Comment
   },
   setup() {
+    const people = computed(() => {
+      return useStore().state.userNumber;
+    });
     let drawing = "";
     const silder = ref(3);
     onMounted(() => {
@@ -64,7 +69,8 @@ export default {
       reset,
       drawing,
       silder,
-      change
+      change,
+      people
     };
   }
 };
@@ -132,5 +138,11 @@ export default {
     display: flex;
     justify-content: space-between;
   }
+}
+
+.people {
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 </style>

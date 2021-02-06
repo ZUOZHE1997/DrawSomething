@@ -1,21 +1,40 @@
 <template>
   <div class="comment-container">
     <div class="message-box">
-      <Message v-for="i in 20" :key="i"></Message>
+      <Message
+        v-for="i in list"
+        :key="i.name"
+        :name="i.name"
+        :content="i.msg"
+      ></Message>
     </div>
     <div class="comment-box">
-      <input type="text" class="comment-input" />
-      <button class="comment-button">发表</button>
+      <input type="text" class="comment-input" v-model="message" />
+      <button class="comment-button" @click="send">发表</button>
     </div>
   </div>
 </template>
 
 <script>
 import Message from "@/components/Message";
+import { ref, computed } from "vue";
+import { sendComment } from "@/socket";
+import { useStore } from "vuex";
 
 export default {
   name: "Comment",
-  components: { Message }
+  components: { Message },
+  setup() {
+    const store = useStore();
+    const message = ref("");
+    const list = computed(() => {
+      return store.state.comment;
+    });
+    const send = () => {
+      sendComment({ name: store.state.name, msg: message.value });
+    };
+    return { message, send, list };
+  }
 };
 </script>
 

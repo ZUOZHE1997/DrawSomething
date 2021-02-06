@@ -13,7 +13,6 @@ const Drawing = require('./controller/index')
 
 app.use(routers.routes())
 app.use(router.allowedMethods())
-
 app.use(cors(handleCors))
 
 const server = http.createServer(app.callback())
@@ -24,5 +23,8 @@ server.listen(port, () => {
 
 io.on('connection', (socket) => {
   console.log('a user connected')
+  // if (data.peoples.length > 1) {
+
+  // }
   Drawing(socket, io)
 })
