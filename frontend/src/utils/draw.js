@@ -99,7 +99,7 @@ export class Draw {
     }
   }
 
-  // //
+  // 清除
   cleaning() {
     this.clear = true;
   }
@@ -112,6 +112,7 @@ export class Draw {
     // this.canvas.height = this.canvas.height
   }
 
+  // 撤销
   undo() {
     // console.log(this.history)
     if (this.history.length < 1) return false;
@@ -119,16 +120,17 @@ export class Draw {
     this.history.pop();
   }
 
+  // 自动保存每一步,上限为储存10步，太多了怕挂掉
   saveData(data) {
-    this.history.length === 10 && this.history.shift(); // 上限为储存10步，太多了怕挂掉
+    this.history.length === 10 && this.history.shift();
     this.history.push(data);
   }
-
+  // 切换画笔的宽度
   changeLine(value) {
     // console.log(value)
     this.lineWidth = value;
   }
-
+  // 选择画笔
   checkPen() {
     // console.log()
     this.clear = false;

@@ -9,11 +9,14 @@
       :value="value"
       @input="setValue"
     />
+    <p class="title">
+      <span>小</span>
+      <span>大</span>
+    </p>
   </div>
 </template>
 
 <script>
-// import { ref } from "vue";
 
 export default {
   name: "slider",
@@ -76,5 +79,14 @@ input[type="range"]::-moz-range-thumb {
   border-radius: 8px;
   background: #40a9ff;
   cursor: pointer;
+}
+.title{
+  margin: 0;
+  padding: 0;
+  font-size: 12px;
+  color: #40a9ff;
+  font-weight: 600;
+  display: flex;
+  justify-content: space-between;
 }
 </style>

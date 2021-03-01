@@ -16,16 +16,21 @@
 </template>
 
 <script>
-import { connect, send } from "@/socket";
+import { useStore } from "vuex";
+import { useRouter } from "vue-router";
 import { ref } from "vue";
 
 export default {
   name: "Login",
   setup() {
+    const store = useStore();
+    const router = useRouter();
     let username = ref("");
-    connect();
     const inputName = () => {
-      send(username.value);
+      console.log(123);
+      store.dispatch("setName", username.value);
+      console.log(router)
+      router.push("/homePage");
     };
     return {
       inputName,

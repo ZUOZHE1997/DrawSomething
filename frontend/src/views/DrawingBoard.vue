@@ -13,14 +13,8 @@
           max="12"
           min="1"
         ></Slider>
-        <p>
-          <span>小</span>
-          <span>大</span>
-        </p>
       </div>
     </div>
-    <Comment></Comment>
-    <div class="people">当前在线{{ people }}人</div>
   </div>
 </template>
 
@@ -28,14 +22,12 @@
 import { Draw } from "@/utils/draw";
 import { onMounted, ref, computed } from "vue";
 import Slider from "@/components/Slider";
-import Comment from "./Comment";
 import { useStore } from "vuex";
 
 export default {
   name: "DrawingBoard",
   components: {
-    Slider,
-    Comment
+    Slider
   },
   setup() {
     const people = computed(() => {
@@ -86,7 +78,8 @@ export default {
   position: absolute;
   left: 0;
   right: 0;
-  top: 0;
+  //top: 0;
+  bottom: 0;
   margin: auto;
   width: 600px;
   height: auto;
@@ -128,16 +121,6 @@ export default {
 .range-set {
   display: flex;
   flex-direction: column;
-
-  p {
-    margin: 0;
-    padding: 0;
-    font-size: 12px;
-    color: #40a9ff;
-    font-weight: 600;
-    display: flex;
-    justify-content: space-between;
-  }
 }
 
 .people {
