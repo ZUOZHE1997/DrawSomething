@@ -1,26 +1,6 @@
-# DrawSomething
+# 画板工具
 
-## 你画我猜
-
-## 技术栈
-
-#### 前端 :Vue3 + Vue-router + Vuex + Socket.io
-
-#### 服务端: Node.js (Koa2) + Socket.io
-
-## 目录简介:
-
-### 服务端目录 :
-
-```
-├─controller // websocket文件
-├─router // 路由文件
-├─lib //配置跨域
-├─app.js // 主程序
-└─config.js // 配置(端口等)
-```
-
-### 前端目录:
+画板方法封装在 utils 目录下的 draw.js,目前橡皮擦功能带优化
 
 ```
 ├─assets // 静态资源
@@ -34,11 +14,6 @@
 
 ## 启动:
 
-```
-cd backend
-npm install
-node app.js
-```
 
 ```
 cd frontend
