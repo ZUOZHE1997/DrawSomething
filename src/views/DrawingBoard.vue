@@ -21,20 +21,18 @@
 
 <script>
 import { Draw } from "@/utils/draw";
-import { onMounted, ref, computed } from "vue";
+import { onMounted, ref } from "vue";
 import Slider from "@/components/Slider";
 import { useStore } from "vuex";
-// import { downloadFile } from "@/utils/draw";
+import { downloadBase64Img } from "@/utils/download";
 export default {
   name: "DrawingBoard",
   components: {
     Slider
   },
   setup() {
-    const people = computed(() => {
-      return useStore().state.userNumber;
-    });
     let drawing = "";
+    const store = useStore();
     const img = ref("");
     const silder = ref(3);
     onMounted(() => {
@@ -59,8 +57,9 @@ export default {
     const download = () => {
       const a = document.getElementById("draw");
       img.value = a.toDataURL("image/png");
-      // downloadFile(img.value);
       console.log(img.value);
+      // downloadFile(img.value);
+      downloadBase64Img.download(store.state.name, img.value);
     };
     return {
       download,
@@ -70,8 +69,7 @@ export default {
       reset,
       drawing,
       silder,
-      change,
-      people
+      change
     };
   }
 };
