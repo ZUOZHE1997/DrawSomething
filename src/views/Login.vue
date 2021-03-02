@@ -29,7 +29,7 @@ export default {
     const inputName = () => {
       console.log(123);
       store.dispatch("setName", username.value);
-      console.log(router)
+      console.log(router);
       router.push("/homePage");
     };
     return {

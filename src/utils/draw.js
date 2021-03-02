@@ -52,10 +52,6 @@ export class Draw {
       let newPoint = { x: x, y: y };
       this.drawLine(this.lastPoint.x, this.lastPoint.y, newPoint.x, newPoint.y);
       this.lastPoint = newPoint;
-      // this.history.push({
-      //   method: 'drawImage',
-      //   params: params
-      // })
     }
   }
 
@@ -87,6 +83,8 @@ export class Draw {
       this.ctx.save();
       this.ctx.globalCompositeOperation = "destination-out";
       this.ctx.stroke();
+      this.ctx.moveTo(x1, y1);
+      this.ctx.lineTo(x2, y2);
       this.ctx.closePath();
       this.ctx.clip();
       this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -102,6 +100,15 @@ export class Draw {
   // 清除
   cleaning() {
     this.clear = true;
+    // if (this.clear) {
+    //   this.ctx.save();
+    //   this.ctx.globalCompositeOperation = "destination-out";
+    //   this.ctx.stroke();
+    //   this.ctx.closePath();
+    //   this.ctx.clip();
+    //   this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    //   this.ctx.restore();
+    // }
   }
 
   // 清空

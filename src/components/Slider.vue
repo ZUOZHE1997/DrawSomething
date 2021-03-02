@@ -17,7 +17,6 @@
 </template>
 
 <script>
-
 export default {
   name: "slider",
   emits: ["update:value", "input"],
@@ -80,7 +79,7 @@ input[type="range"]::-moz-range-thumb {
   background: #40a9ff;
   cursor: pointer;
 }
-.title{
+.title {
   margin: 0;
   padding: 0;
   font-size: 12px;

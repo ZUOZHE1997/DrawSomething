@@ -2,6 +2,7 @@
   <div class="draw-content">
     <canvas id="draw" />
     <div class="operating-btn-list">
+      <button @click="download">下载</button>
       <button @click="checkPen">画笔</button>
       <button @click="cleaning">橡皮擦</button>
       <button @click="undo">撤销</button>
@@ -23,7 +24,7 @@ import { Draw } from "@/utils/draw";
 import { onMounted, ref, computed } from "vue";
 import Slider from "@/components/Slider";
 import { useStore } from "vuex";
-
+// import { downloadFile } from "@/utils/draw";
 export default {
   name: "DrawingBoard",
   components: {
@@ -34,6 +35,7 @@ export default {
       return useStore().state.userNumber;
     });
     let drawing = "";
+    const img = ref("");
     const silder = ref(3);
     onMounted(() => {
       drawing = new Draw({ element: "draw" });
@@ -54,7 +56,14 @@ export default {
     const reset = () => {
       drawing.reset();
     };
+    const download = () => {
+      const a = document.getElementById("draw");
+      img.value = a.toDataURL("image/png");
+      // downloadFile(img.value);
+      console.log(img.value);
+    };
     return {
+      download,
       checkPen,
       cleaning,
       undo,
